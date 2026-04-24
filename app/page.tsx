@@ -13,8 +13,8 @@ export default function Home() {
       <TopNavBar />
       <main>
         <HeroSection />
-        <AboutSection />
         <ExperienceSection />
+        <AboutSection />
         <ProjectsSection />
         <TelemetrySection />
         <ContactSection />

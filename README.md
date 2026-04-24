@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# pascalpeters.dev
 
-## Getting Started
+Persönliche Portfolio-Website von Pascal Peters — Softwareentwickler mit Fokus auf Backend, LLMs und Prompt Engineering.
 
-First, run the development server:
+Gebaut mit **Next.js 15** (App Router), **Tailwind CSS** und dem Design System **Structural Calm**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Stack
+
+| Technologie | Zweck |
+|---|---|
+| Next.js 15 | Framework (App Router, Static Export) |
+| Tailwind CSS v4 | Styling |
+| Three.js / React Three Fiber | 3D-Kopfmodell in der Hero Section |
+| Space Grotesk / Inter | Schriften (Headline / Body) |
+| Material Symbols | Icons |
+
+---
+
+## Seitenstruktur
+
+```
+/                          → Startseite (Hero, Profil, Projekte, Kontakt)
+/wiki                      → Wiki-Übersicht (Kategorien & letzte Einträge)
+/wiki/dev-notes            → Kategorie: Dev Notes
+/wiki/workflow             → Kategorie: Workflow
+/wiki/datenbanken          → Kategorie: Datenbanken
+/wiki/ai-llm               → Kategorie: AI / LLM
+/wiki/obsidian-vault-wiki  → Eintrag: Obsidian Vault Wiki (inkl. Live-Preview)
+/wiki/ollama-gui-projekt   → Eintrag: Ollama GUI Projekt
+/wiki/lokale-ollama-modelle-als-agents → Eintrag: Lokale Ollama Modelle als Agents
+/wiki/prompt-engineering               → Eintrag: Prompt Engineering (Index)
+/wiki/prompt-engineering/basic-prompts
+/wiki/prompt-engineering/step-by-step-force
+/wiki/prompt-engineering/shot-prompts
+/projects/ollama-gui       → Projektseite: Ollama GUI
+/projects/llms             → Projektseite: LLMs
+/projects/prompt-engineering → Projektseite: Prompt Engineering
+/impressum                 → Impressum & Datenschutz
+/datenschutz               → Datenschutzerklärung
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Design System
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Das Projekt verwendet das Design System **Structural Calm** (Dokumentation in `DESIGN.md`).
 
-## Learn More
+Kernprinzipien:
+- Dark Mode (`background: #111318`)
+- Tiefenstaffelung über Surface-Tokens statt Borders
+- Space Grotesk für Headlines, Inter für Body-Text
+- Keine runden Ecken (max. `rounded-sm`) für strukturelle Elemente
+- Akzentfarben: Primary `#a0cbf3` · Secondary `#4cd6fb` · Tertiary `#62dcaf`
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Verwandte Projekte
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Wiki (Quartz):** [website-wiki-quartz.vercel.app](https://website-wiki-quartz.vercel.app/) — Obsidian Vault als statische Wiki-Site
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Local Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm install
+npm run dev
+```
+
+Öffne [http://localhost:3000](http://localhost:3000).
+
+## Build
+
+```bash
+npm run build
+```

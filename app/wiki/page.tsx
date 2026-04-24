@@ -50,10 +50,10 @@ const CATEGORIES = [
 ];
 
 const RECENT = [
-  { code: "DEV.0042", title: "Spring Boot: Graceful Shutdown", date: "2026.04.18" },
-  { code: "POS.0031", title: "TSE-Ausfall Handling", date: "2026.04.12" },
-  { code: "DB.0019", title: "Indexing Strategien für Buchungsdaten", date: "2026.04.05" },
-  { code: "AI.0008", title: "Ollama mit eigenem Modell", date: "2026.03.28" },
+  { code: "DEV.0042", title: "Obsidian Vault Wiki", date: "2026.04.18" },
+  { code: "WIKI.0031", title: "Prompt Engineering", date: "2026.03.20" },
+  { code: "WIKI.0030", title: "Ollama GUI Projekt", date: "2026.04.05" },
+  { code: "WIKI.0029", title: "Lokale Ollama Modelle als Agents", date: "2026.03.28" },
 ];
 
 export default function WikiPage() {

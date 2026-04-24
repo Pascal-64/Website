@@ -2,7 +2,7 @@
 
 import { Suspense, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, Environment } from '@react-three/drei';
+import { useGLTF, Environment, Center } from '@react-three/drei';
 import * as THREE from 'three';
 
 const mouse = { x: 0, y: 0 };
@@ -14,7 +14,7 @@ const SENSITIVITY_X = 0.2;
 const LERP = 0.05;          // smoothness (lower = smoother/slower)
 
 function Model() {
-  const { scene } = useGLTF('/Head.glb');
+  const { scene } = useGLTF('/MandalorianHelmet.glb');
   const ref = useRef<THREE.Group>(null);
   const target = useRef({ x: 0, y: 0 });
 
@@ -31,7 +31,13 @@ function Model() {
     ref.current.rotation.x = -target.current.y;
   });
 
-  return <primitive ref={ref} object={scene} scale={1.0} position={[0, 0, 0]} />;
+  return (
+    <group ref={ref}>
+      <Center>
+        <primitive object={scene} scale={5} />
+      </Center>
+    </group>
+  );
 }
 
 export function HeadModel() {

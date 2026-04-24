@@ -40,8 +40,8 @@ export function HeroSection() {
             <div className="relative w-full h-full overflow-hidden rounded-md border border-white/10 bg-surface-container shadow-2xl">
               <img
                 alt="Pascal Peters Portrait"
-                className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition-all duration-700"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLXbmAQ2oS0GZ7GU5Sojk1cdAiB_mfvGmTR0quPzejK2AG0IYYqDm-QC-vVTgyPeuzXBJZXhgawXPVrp0m1TDqMUTbC5q0ac17TzwoRw1qcXkwOMe76Qwq3t9s1kysYCssPa8eleowBF87emKNue2MP1BQtoER1Slb-JsECfv37aDJBBos7ghJh9K_wdNGBz630uPav8AOc8rnlI5Gg6NSRvOChbcHSzLU9iwJlH8iBJ1Kh7e2d1xmWk88DIpKTNikGAIsh5liN7QG"
+                className="w-full h-full object-cover opacity-100 hover:grayscale-0 transition-all duration-700"
+                src="3D Head clear.png"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-40" />
             </div>

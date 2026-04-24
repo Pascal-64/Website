@@ -8,10 +8,11 @@ const CATEGORIES = [
     title: "Dev Notes",
     count: "12",
     accent: "border-tertiary",
+    href: "/wiki/dev-notes",
     items: [
-      "Spring Boot Quickstart",
-      "JUnit Testing Patterns",
       "Ollama Projekte",
+      "JUnit Testing Patterns",
+      "Web Projekte",
     ],
   },
   {
@@ -19,6 +20,7 @@ const CATEGORIES = [
     title: "Workflow",
     count: "8",
     accent: "border-secondary-container",
+    href: "/wiki/workflow",
     items: [
       "Tools",
       "Plan",
@@ -30,10 +32,11 @@ const CATEGORIES = [
     title: "Datenbanken",
     count: "6",
     accent: "border-outline",
+    href: "/wiki/datenbanken",
     items: [
       "SQL Performance Tuning",
-      "assaa",
-      "aasass",
+      "Backup & Recovery",
+      "NoSQL vs SQL",
     ],
   },
   {
@@ -41,6 +44,7 @@ const CATEGORIES = [
     title: "AI / LLM",
     count: "4",
     accent: "border-primary",
+    href: "/wiki/ai-llm",
     items: [
       "Ollama Setup",
       "Prompt Engineering Notes",
@@ -50,10 +54,10 @@ const CATEGORIES = [
 ];
 
 const RECENT = [
-  { code: "DEV.0042", title: "Obsidian Vault Wiki", date: "2026.04.18" },
-  { code: "WIKI.0031", title: "Prompt Engineering", date: "2026.03.20" },
-  { code: "WIKI.0030", title: "Ollama GUI Projekt", date: "2026.04.05" },
-  { code: "WIKI.0029", title: "Lokale Ollama Modelle als Agents", date: "2026.03.28" },
+  { code: "DEV.0042", title: "Obsidian Vault Wiki", date: "2026.04", href: "/wiki/obsidian-vault-wiki" },
+  { code: "WIKI.0031", title: "Ollama GUI Projekt", date: "2026.04", href: "/wiki/ollama-gui-projekt" },
+  { code: "WIKI.0030", title: "Prompt Engineering", date: "2026.03", href: "/wiki/prompt-engineering" },
+  { code: "WIKI.0029", title: "Lokale Ollama Modelle als Agents", date: "2026.03", href: "/wiki/lokale-ollama-modelle-als-agents" },
 ];
 
 export default function WikiPage() {
@@ -79,7 +83,7 @@ export default function WikiPage() {
           <div className="max-w-screen-xl mx-auto">
             <div className="flex items-baseline justify-between mb-10">
               <h2 className="font-headline text-xs font-bold tracking-[0.2em] text-primary uppercase">
-                Kategorien
+                Projekte
               </h2>
               <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
                 {CATEGORIES.length} sections
@@ -87,9 +91,10 @@ export default function WikiPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
               {CATEGORIES.map((cat) => (
-                <article
+                <Link
                   key={cat.title}
-                  className={`p-10 bg-surface-container-low border-l-2 ${cat.accent} hover:bg-surface-container transition-all`}
+                  href={cat.href}
+                  className={`block p-10 bg-surface-container-low border-l-2 ${cat.accent} hover:bg-surface-container transition-all`}
                 >
                   <div className="flex items-start justify-between mb-8">
                     <div className="w-12 h-12 flex items-center justify-center bg-primary-container/30 text-primary rounded-sm">
@@ -113,7 +118,7 @@ export default function WikiPage() {
                       </li>
                     ))}
                   </ul>
-                </article>
+                </Link>
               ))}
             </div>
           </div>
@@ -131,8 +136,9 @@ export default function WikiPage() {
             </div>
             <div className="divide-y divide-outline-variant/10 bg-surface-container-low">
               {RECENT.map((entry) => (
-                <div
+                <Link
                   key={entry.code}
+                  href={entry.href}
                   className="flex items-center justify-between p-6 hover:bg-surface-container transition-colors"
                 >
                   <div className="flex items-center gap-6">
@@ -146,16 +152,25 @@ export default function WikiPage() {
                   <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/40 uppercase">
                     {entry.date}
                   </span>
-                </div>
+                </Link>
               ))}
             </div>
-            <div className="mt-10">
+            <div className="mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <Link
                 href="/"
                 className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline"
               >
                 ← Zurück zur Startseite
               </Link>
+              <a
+                href="https://website-wiki-quartz.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 font-label text-[10px] tracking-widest uppercase text-on-surface-variant hover:text-primary transition-colors bg-surface-container-low px-4 py-2 rounded-sm border border-primary/10 hover:border-primary/30"
+              >
+                <span className="material-symbols-outlined text-base">open_in_new</span>
+                Wiki_Quartz →
+              </a>
             </div>
           </div>
         </section>

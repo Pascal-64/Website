@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { href: "/#experience", label: "Über mich", activeOn: "/" },
-  { href: "/#projects", label: "Projekte" },
   { href: "/wiki", label: "Wiki", activeOn: "/wiki" },
+  { href: "/#projects", label: "Projekte" },
 ];
 
 export function TopNavBar() {

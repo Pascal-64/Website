@@ -1,3 +1,12 @@
+'use client';
+
+import dynamic from 'next/dynamic';
+
+const HeadModel = dynamic(
+  () => import('./HeadModel').then((m) => ({ default: m.HeadModel })),
+  { ssr: false }
+);
+
 export function HeroSection() {
   return (
     <section className="relative px-10 pt-48 pb-40 overflow-hidden bg-surface">
@@ -36,14 +45,9 @@ export function HeroSection() {
             </div>
           </div>
           <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 shrink-0">
-            <div className="absolute inset-0 border-2 border-primary/20 -translate-x-4 translate-y-4 rounded-md" />
-            <div className="relative w-full h-full overflow-hidden rounded-md border border-white/10 bg-surface-container shadow-2xl">
-              <img
-                alt="Pascal Peters Portrait"
-                className="w-full h-full object-cover opacity-100 hover:grayscale-0 transition-all duration-700"
-                src="3D Head clear.png"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-40" />
+            <div className="absolute inset-0 border-2 border-primary/20 rounded-md" />
+            <div className="relative w-full h-full overflow-hidden rounded-md">
+              <HeadModel />
             </div>
             <div className="absolute top-4 right-4">
               <div className="flex items-center gap-2 bg-background/80 backdrop-blur-md px-3 py-1 border border-primary/20 rounded-full">

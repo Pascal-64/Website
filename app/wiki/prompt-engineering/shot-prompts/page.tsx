@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TopNavBar } from "../../../components/TopNavBar";
 import { SiteFooter } from "../../../components/SiteFooter";
+import { AnimatedSection } from "../../../components/AnimatedSection";
 
 export default function ShotPromptsPage() {
   return (
@@ -9,15 +10,15 @@ export default function ShotPromptsPage() {
       <main className="bg-surface min-h-screen">
         <section className="px-10 pt-48 pb-20">
           <div className="max-w-screen-xl mx-auto">
-            <div className="flex items-center gap-6 mb-6">
+            <div className="flex items-center gap-6 mb-6 animate-fade-up-1">
               <span className="inline-block font-headline text-xs font-bold tracking-[0.2em] text-tertiary uppercase">
                 Wiki / Prompt Engineering
               </span>
             </div>
-            <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-6">
+            <h1 className="animate-fade-up-1 font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-6">
               Shot-Prompts
             </h1>
-            <p className="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            <p className="animate-fade-up-2 text-lg text-on-surface-variant max-w-2xl leading-relaxed">
               Zero-Shot, One-Shot und Few-Shot: Wie viele Beispiele einem Modell gegeben werden,
               bestimmt maßgeblich Qualität, Stil und Konsistenz der Ausgabe.
             </p>
@@ -27,7 +28,7 @@ export default function ShotPromptsPage() {
         <section className="px-10 pb-20">
           <div className="max-w-screen-xl mx-auto space-y-1">
 
-            <div className="p-8 bg-surface-container-low border-l-2 border-outline/40">
+            <AnimatedSection delay={0} className="p-8 bg-surface-container-low border-l-2 border-outline/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <div className="flex items-baseline justify-between mb-3">
                 <h2 className="font-headline text-lg font-bold text-on-surface">Zero-Shot</h2>
                 <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">0 Beispiele</span>
@@ -55,9 +56,9 @@ export default function ShotPromptsPage() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </AnimatedSection>
 
-            <div className="p-8 bg-surface-container-low border-l-2 border-secondary/40">
+            <AnimatedSection delay={80} className="p-8 bg-surface-container-low border-l-2 border-secondary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <div className="flex items-baseline justify-between mb-3">
                 <h2 className="font-headline text-lg font-bold text-on-surface">One-Shot</h2>
                 <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">1 Beispiel</span>
@@ -74,9 +75,9 @@ export default function ShotPromptsPage() {
               <div className="bg-surface-container-lowest p-3 rounded-sm mt-2">
                 <code className="text-xs text-on-surface-variant/60 font-mono">→ Ausgabe: Neutral</code>
               </div>
-            </div>
+            </AnimatedSection>
 
-            <div className="p-8 bg-surface-container-low border-l-2 border-primary/40">
+            <AnimatedSection delay={160} className="p-8 bg-surface-container-low border-l-2 border-primary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <div className="flex items-baseline justify-between mb-3">
                 <h2 className="font-headline text-lg font-bold text-on-surface">Few-Shot</h2>
                 <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">Mehrere Beispiele</span>
@@ -101,9 +102,9 @@ export default function ShotPromptsPage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </AnimatedSection>
 
-            <div className="p-8 bg-surface-container-low border-l-2 border-tertiary/40">
+            <AnimatedSection delay={240} className="p-8 bg-surface-container-low border-l-2 border-tertiary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <h2 className="font-headline text-lg font-bold text-on-surface mb-6">Vergleich</h2>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -129,7 +130,7 @@ export default function ShotPromptsPage() {
                   </tbody>
                 </table>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </section>
 
@@ -138,13 +139,13 @@ export default function ShotPromptsPage() {
             <div className="flex flex-col md:flex-row gap-6">
               <Link
                 href="/wiki/prompt-engineering/step-by-step-force"
-                className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline"
+                className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline hover:-translate-y-[1px] transition-transform inline-block"
               >
                 ← Step by Step Force
               </Link>
               <Link
                 href="/wiki/prompt-engineering"
-                className="font-headline text-xs font-bold tracking-[0.2em] text-on-surface-variant uppercase hover:text-on-surface transition-colors"
+                className="font-headline text-xs font-bold tracking-[0.2em] text-on-surface-variant uppercase hover:text-on-surface transition-colors inline-block"
               >
                 Prompt Engineering Übersicht
               </Link>

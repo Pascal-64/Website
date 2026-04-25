@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TopNavBar } from "../../components/TopNavBar";
 import { SiteFooter } from "../../components/SiteFooter";
+import { AnimatedSection } from "../../components/AnimatedSection";
 
 const FEATURES = [
   {
@@ -30,7 +31,7 @@ export default function PromptEngineeringProjectPage() {
       <main className="bg-surface min-h-screen">
         <section className="px-10 pt-48 pb-20">
           <div className="max-w-screen-xl mx-auto">
-            <div className="flex items-center gap-6 mb-6">
+            <div className="flex items-center gap-6 mb-6 animate-fade-up-1">
               <span className="inline-block font-headline text-xs font-bold tracking-[0.2em] text-tertiary uppercase">
                 Project
               </span>
@@ -38,7 +39,7 @@ export default function PromptEngineeringProjectPage() {
                 2026.01
               </span>
             </div>
-            <div className="flex items-start gap-6 mb-6">
+            <div className="flex items-start gap-6 mb-6 animate-fade-up-1">
               <div className="w-14 h-14 flex items-center justify-center bg-secondary-container text-on-secondary rounded-sm shrink-0 mt-1">
                 <span className="material-symbols-outlined text-2xl">settings_suggest</span>
               </div>
@@ -46,11 +47,11 @@ export default function PromptEngineeringProjectPage() {
                 Prompt&#8209;Engineering
               </h1>
             </div>
-            <p className="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            <p className="animate-fade-up-2 text-lg text-on-surface-variant max-w-2xl leading-relaxed">
               Konzeption und Optimierung von Prompts für reproduzierbare Ergebnisse. Klare Strukturen,
               definierte Abläufe und gezielte Steuerung von Modellverhalten für konkrete Anwendungsfälle.
             </p>
-            <div className="flex flex-wrap gap-2 mt-8">
+            <div className="flex flex-wrap gap-2 mt-8 animate-fade-up-2">
               {TECH.map((t) => (
                 <span
                   key={t}
@@ -65,25 +66,26 @@ export default function PromptEngineeringProjectPage() {
 
         <section className="px-10 pb-20">
           <div className="max-w-screen-xl mx-auto">
-            <div className="flex items-baseline justify-between mb-10">
+            <AnimatedSection className="flex items-baseline justify-between mb-10">
               <h2 className="font-headline text-xs font-bold tracking-[0.2em] text-primary uppercase">
                 Schwerpunkte
               </h2>
               <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
                 {FEATURES.length} modules
               </span>
-            </div>
+            </AnimatedSection>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-              {FEATURES.map((f) => (
-                <div
+              {FEATURES.map((f, i) => (
+                <AnimatedSection
                   key={f.title}
-                  className="p-8 bg-surface-container-low border-l-2 border-secondary/40"
+                  delay={i * 80}
+                  className="p-8 bg-surface-container-low border-l-2 border-secondary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default"
                 >
                   <h3 className="font-headline text-lg font-bold text-on-surface mb-3">
                     {f.title}
                   </h3>
                   <p className="text-sm text-on-surface-variant leading-relaxed">{f.body}</p>
-                </div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -91,15 +93,15 @@ export default function PromptEngineeringProjectPage() {
 
         <section className="px-10 pb-32">
           <div className="max-w-screen-xl mx-auto">
-            <div className="flex items-baseline justify-between mb-10">
+            <AnimatedSection className="flex items-baseline justify-between mb-10">
               <h2 className="font-headline text-xs font-bold tracking-[0.2em] text-primary uppercase">
                 Wiki-Einträge
               </h2>
               <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
                 Knowledge Base
               </span>
-            </div>
-            <div className="divide-y divide-outline-variant/10 bg-surface-container-low">
+            </AnimatedSection>
+            <AnimatedSection delay={80} className="divide-y divide-outline-variant/10 bg-surface-container-low">
               <Link
                 href="/wiki/prompt-engineering"
                 className="flex items-center justify-between p-6 hover:bg-surface-container transition-colors"
@@ -114,11 +116,11 @@ export default function PromptEngineeringProjectPage() {
                   2026.03.20
                 </span>
               </Link>
-            </div>
+            </AnimatedSection>
             <div className="mt-12">
               <Link
                 href="/#projects"
-                className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline"
+                className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline hover:-translate-y-[1px] transition-transform inline-block"
               >
                 ← Zurück zu den Projekten
               </Link>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TopNavBar } from "../components/TopNavBar";
 import { SiteFooter } from "../components/SiteFooter";
+import { AnimatedSection } from "../components/AnimatedSection";
 
 const CATEGORIES = [
   {
@@ -67,13 +68,13 @@ export default function WikiPage() {
       <main className="bg-surface min-h-screen">
         <section className="px-10 pt-48 pb-20">
           <div className="max-w-screen-xl mx-auto">
-            <span className="inline-block font-headline text-xs font-bold tracking-[0.2em] text-tertiary uppercase mb-4">
+            <span className="animate-fade-up-1 inline-block font-headline text-xs font-bold tracking-[0.2em] text-tertiary uppercase mb-4">
               Knowledge Base
             </span>
-            <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-6">
+            <h1 className="animate-fade-up-1 font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-6">
               Wiki
             </h1>
-            <p className="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            <p className="animate-fade-up-2 text-lg text-on-surface-variant max-w-2xl leading-relaxed">
               Sammlung an Erfahrungen, Lernmaterial, Notizen und technischen Referenzen
             </p>
           </div>
@@ -81,44 +82,45 @@ export default function WikiPage() {
 
         <section className="px-10 pb-24">
           <div className="max-w-screen-xl mx-auto">
-            <div className="flex items-baseline justify-between mb-10">
+            <AnimatedSection className="flex items-baseline justify-between mb-10">
               <h2 className="font-headline text-xs font-bold tracking-[0.2em] text-primary uppercase">
                 Projekte
               </h2>
               <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
                 {CATEGORIES.length} sections
               </span>
-            </div>
+            </AnimatedSection>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-              {CATEGORIES.map((cat) => (
-                <Link
-                  key={cat.title}
-                  href={cat.href}
-                  className={`block p-10 bg-surface-container-low border-l-2 ${cat.accent} hover:bg-surface-container transition-all`}
-                >
-                  <div className="flex items-start justify-between mb-8">
-                    <div className="w-12 h-12 flex items-center justify-center bg-primary-container/30 text-primary rounded-sm">
-                      <span className="material-symbols-outlined">{cat.icon}</span>
+              {CATEGORIES.map((cat, i) => (
+                <AnimatedSection key={cat.title} delay={i * 80}>
+                  <Link
+                    href={cat.href}
+                    className={`block p-10 bg-surface-container-low border-l-2 ${cat.accent} hover:bg-surface-container hover:-translate-y-[2px] transition-all`}
+                  >
+                    <div className="flex items-start justify-between mb-8">
+                      <div className="w-12 h-12 flex items-center justify-center bg-primary-container/30 text-primary rounded-sm">
+                        <span className="material-symbols-outlined">{cat.icon}</span>
+                      </div>
+                      <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
+                        {cat.count} entries
+                      </span>
                     </div>
-                    <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
-                      {cat.count} entries
-                    </span>
-                  </div>
-                  <h3 className="font-headline text-2xl font-bold text-on-surface mb-6">
-                    {cat.title}
-                  </h3>
-                  <ul className="space-y-3">
-                    {cat.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-3 text-sm text-on-surface-variant"
-                      >
-                        <span className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-secondary" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </Link>
+                    <h3 className="font-headline text-2xl font-bold text-on-surface mb-6">
+                      {cat.title}
+                    </h3>
+                    <ul className="space-y-3">
+                      {cat.items.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-start gap-3 text-sm text-on-surface-variant"
+                        >
+                          <span className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-secondary" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </Link>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -126,15 +128,15 @@ export default function WikiPage() {
 
         <section className="px-10 pb-32">
           <div className="max-w-screen-xl mx-auto">
-            <div className="flex items-baseline justify-between mb-10">
+            <AnimatedSection className="flex items-baseline justify-between mb-10">
               <h2 className="font-headline text-xs font-bold tracking-[0.2em] text-primary uppercase">
                 Zuletzt hinzugefügt
               </h2>
               <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
                 Latest_Entries
               </span>
-            </div>
-            <div className="divide-y divide-outline-variant/10 bg-surface-container-low">
+            </AnimatedSection>
+            <AnimatedSection delay={80} className="divide-y divide-outline-variant/10 bg-surface-container-low">
               {RECENT.map((entry) => (
                 <Link
                   key={entry.code}
@@ -154,11 +156,11 @@ export default function WikiPage() {
                   </span>
                 </Link>
               ))}
-            </div>
+            </AnimatedSection>
             <div className="mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <Link
                 href="/"
-                className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline"
+                className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline hover:-translate-y-[1px] transition-transform inline-block"
               >
                 ← Zurück zur Startseite
               </Link>

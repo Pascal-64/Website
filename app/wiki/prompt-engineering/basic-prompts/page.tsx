@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TopNavBar } from "../../../components/TopNavBar";
 import { SiteFooter } from "../../../components/SiteFooter";
+import { AnimatedSection } from "../../../components/AnimatedSection";
 
 export default function BasicPromptsPage() {
   return (
@@ -9,15 +10,15 @@ export default function BasicPromptsPage() {
       <main className="bg-surface min-h-screen">
         <section className="px-10 pt-48 pb-20">
           <div className="max-w-screen-xl mx-auto">
-            <div className="flex items-center gap-6 mb-6">
+            <div className="flex items-center gap-6 mb-6 animate-fade-up-1">
               <span className="inline-block font-headline text-xs font-bold tracking-[0.2em] text-tertiary uppercase">
                 Wiki / Prompt Engineering
               </span>
             </div>
-            <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-6">
+            <h1 className="animate-fade-up-1 font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-6">
               Basic-Prompts
             </h1>
-            <p className="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            <p className="animate-fade-up-2 text-lg text-on-surface-variant max-w-2xl leading-relaxed">
               Einfache, direkte Eingaben an ein KI-Modell. Gut für klar begrenzte Aufgaben —
               mit dem richtigen Aufbau deutlich wirkungsvoller als eine einfache Frage.
             </p>
@@ -26,15 +27,15 @@ export default function BasicPromptsPage() {
 
         <section className="px-10 pb-20">
           <div className="max-w-screen-xl mx-auto space-y-1">
-            <div className="p-8 bg-surface-container-low border-l-2 border-primary/40">
+            <AnimatedSection delay={0} className="p-8 bg-surface-container-low border-l-2 border-primary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <h2 className="font-headline text-lg font-bold text-on-surface mb-3">Was ist ein Basic-Prompt?</h2>
               <p className="text-sm text-on-surface-variant leading-relaxed">
                 Basic-Prompts bestehen meist aus einer klaren Aufgabe ohne viele Zusatzregeln oder Beispiele.
                 Sie funktionieren gut, wenn die Aufgabe eindeutig ist und wenig Kontext benötigt.
               </p>
-            </div>
+            </AnimatedSection>
 
-            <div className="p-8 bg-surface-container-low border-l-2 border-primary/40">
+            <AnimatedSection delay={80} className="p-8 bg-surface-container-low border-l-2 border-primary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <h2 className="font-headline text-lg font-bold text-on-surface mb-3">Beispiel: Einfach</h2>
               <p className="text-sm text-on-surface-variant leading-relaxed mb-4">
                 Dieser Prompt ist kurz und verständlich, lässt aber viele wichtige Punkte offen.
@@ -44,9 +45,9 @@ export default function BasicPromptsPage() {
               <div className="bg-surface-container-lowest p-4 rounded-sm">
                 <code className="text-sm text-secondary font-mono">Fasse dieses Dokument zusammen.</code>
               </div>
-            </div>
+            </AnimatedSection>
 
-            <div className="p-8 bg-surface-container-low border-l-2 border-secondary/40">
+            <AnimatedSection delay={160} className="p-8 bg-surface-container-low border-l-2 border-secondary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <h2 className="font-headline text-lg font-bold text-on-surface mb-3">Beispiel: Verbessert</h2>
               <p className="text-sm text-on-surface-variant leading-relaxed mb-4">
                 Dieser Prompt enthält Dokumenttyp, Thema, Ausgabeformat, Zielgruppe und Fokus —
@@ -59,9 +60,9 @@ export default function BasicPromptsPage() {
                   für politische Entscheidungsträger.
                 </code>
               </div>
-            </div>
+            </AnimatedSection>
 
-            <div className="p-8 bg-surface-container-low border-l-2 border-tertiary/40">
+            <AnimatedSection delay={240} className="p-8 bg-surface-container-low border-l-2 border-tertiary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <h2 className="font-headline text-lg font-bold text-on-surface mb-3">Struktur eines guten Basic-Prompts</h2>
               <div className="space-y-3">
                 <div className="bg-surface-container-lowest p-3 rounded-sm">
@@ -74,10 +75,10 @@ export default function BasicPromptsPage() {
               <p className="text-sm text-on-surface-variant leading-relaxed mt-4">
                 Beispiel: <span className="text-on-surface font-medium">Erkläre neuronale Netzwerke für Einsteiger in 5 kurzen Abschnitten mit Fokus auf praktische Anwendungen.</span>
               </p>
-            </div>
+            </AnimatedSection>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-              <div className="p-8 bg-surface-container-low border-l-2 border-tertiary/40">
+              <AnimatedSection delay={320} className="p-8 bg-surface-container-low border-l-2 border-tertiary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
                 <h2 className="font-headline text-lg font-bold text-on-surface mb-3">Vorteile</h2>
                 <ul className="space-y-2">
                   {["Schnell formuliert", "Leicht verständlich", "Gut für einfache Aufgaben", "Ideal für erste Entwürfe", "Nützlich bei klar begrenzten Fragen"].map((v) => (
@@ -87,8 +88,8 @@ export default function BasicPromptsPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="p-8 bg-surface-container-low border-l-2 border-outline/40">
+              </AnimatedSection>
+              <AnimatedSection delay={400} className="p-8 bg-surface-container-low border-l-2 border-outline/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
                 <h2 className="font-headline text-lg font-bold text-on-surface mb-3">Grenzen</h2>
                 <ul className="space-y-2">
                   {["Mehrere Bedingungen gleichzeitig", "Exakt strukturiertes Ergebnis", "Komplexe Analysen", "Kontrollierte Zwischenschritte", "Reproduzierbare Ausgaben"].map((v) => (
@@ -98,7 +99,7 @@ export default function BasicPromptsPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </AnimatedSection>
             </div>
           </div>
         </section>
@@ -108,13 +109,13 @@ export default function BasicPromptsPage() {
             <div className="flex flex-col md:flex-row gap-6">
               <Link
                 href="/wiki/prompt-engineering"
-                className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline"
+                className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline hover:-translate-y-[1px] transition-transform inline-block"
               >
                 ← Prompt Engineering
               </Link>
               <Link
                 href="/wiki/prompt-engineering/step-by-step-force"
-                className="font-headline text-xs font-bold tracking-[0.2em] text-on-surface-variant uppercase hover:text-on-surface transition-colors"
+                className="font-headline text-xs font-bold tracking-[0.2em] text-on-surface-variant uppercase hover:text-on-surface transition-colors inline-block"
               >
                 → Step by Step Force
               </Link>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TopNavBar } from "../../../components/TopNavBar";
 import { SiteFooter } from "../../../components/SiteFooter";
+import { AnimatedSection } from "../../../components/AnimatedSection";
 
 const USECASES = [
   "Komplexe Analysen",
@@ -34,15 +35,15 @@ export default function StepByStepForcePage() {
       <main className="bg-surface min-h-screen">
         <section className="px-10 pt-48 pb-20">
           <div className="max-w-screen-xl mx-auto">
-            <div className="flex items-center gap-6 mb-6">
+            <div className="flex items-center gap-6 mb-6 animate-fade-up-1">
               <span className="inline-block font-headline text-xs font-bold tracking-[0.2em] text-tertiary uppercase">
                 Wiki / Prompt Engineering
               </span>
             </div>
-            <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-6">
+            <h1 className="animate-fade-up-1 font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-6">
               Step by Step Force
             </h1>
-            <p className="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            <p className="animate-fade-up-2 text-lg text-on-surface-variant max-w-2xl leading-relaxed">
               Eine Prompt-Technik, bei der das Modell gezielt angewiesen wird, eine Aufgabe
               schrittweise zu bearbeiten — für nachvollziehbare und vollständige Ergebnisse.
             </p>
@@ -51,7 +52,7 @@ export default function StepByStepForcePage() {
 
         <section className="px-10 pb-20">
           <div className="max-w-screen-xl mx-auto space-y-1">
-            <div className="p-8 bg-surface-container-low border-l-2 border-secondary/40">
+            <AnimatedSection delay={0} className="p-8 bg-surface-container-low border-l-2 border-secondary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <h2 className="font-headline text-lg font-bold text-on-surface mb-3">Grundidee</h2>
               <p className="text-sm text-on-surface-variant leading-relaxed mb-4">
                 Statt nur das Endergebnis zu verlangen, wird das Modell angewiesen, einzelne
@@ -63,9 +64,9 @@ export default function StepByStepForcePage() {
                   Gehe diese Aufgabe Schritt für Schritt an und überspringe keinen Schritt.
                 </code>
               </div>
-            </div>
+            </AnimatedSection>
 
-            <div className="p-8 bg-surface-container-low border-l-2 border-secondary/40">
+            <AnimatedSection delay={80} className="p-8 bg-surface-container-low border-l-2 border-secondary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <h2 className="font-headline text-lg font-bold text-on-surface mb-3">Beispiel-Prompt</h2>
               <div className="bg-surface-container-lowest p-4 rounded-sm mb-4">
                 <code className="text-sm text-secondary font-mono leading-relaxed whitespace-pre-line">
@@ -87,10 +88,10 @@ export default function StepByStepForcePage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </AnimatedSection>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-              <div className="p-8 bg-surface-container-low border-l-2 border-tertiary/40">
+              <AnimatedSection delay={160} className="p-8 bg-surface-container-low border-l-2 border-tertiary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
                 <h2 className="font-headline text-lg font-bold text-on-surface mb-3">Wann sinnvoll</h2>
                 <ul className="space-y-2">
                   {USECASES.map((u) => (
@@ -100,8 +101,8 @@ export default function StepByStepForcePage() {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="p-8 bg-surface-container-low border-l-2 border-primary/40">
+              </AnimatedSection>
+              <AnimatedSection delay={240} className="p-8 bg-surface-container-low border-l-2 border-primary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
                 <h2 className="font-headline text-lg font-bold text-on-surface mb-3">Vorteile</h2>
                 <ul className="space-y-2">
                   {ADVANTAGES.map((a) => (
@@ -111,10 +112,10 @@ export default function StepByStepForcePage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </AnimatedSection>
             </div>
 
-            <div className="p-8 bg-surface-container-low border-l-2 border-secondary/40">
+            <AnimatedSection delay={320} className="p-8 bg-surface-container-low border-l-2 border-secondary/40 hover:bg-surface-container hover:-translate-y-[2px] transition-all cursor-default">
               <h2 className="font-headline text-lg font-bold text-on-surface mb-4">Bewährte Formulierungen</h2>
               <div className="space-y-2">
                 {PHRASES.map((p) => (
@@ -123,7 +124,7 @@ export default function StepByStepForcePage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </section>
 
@@ -132,13 +133,13 @@ export default function StepByStepForcePage() {
             <div className="flex flex-col md:flex-row gap-6">
               <Link
                 href="/wiki/prompt-engineering/basic-prompts"
-                className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline"
+                className="font-headline text-xs font-bold tracking-[0.2em] text-secondary uppercase hover:underline hover:-translate-y-[1px] transition-transform inline-block"
               >
                 ← Basic-Prompts
               </Link>
               <Link
                 href="/wiki/prompt-engineering/shot-prompts"
-                className="font-headline text-xs font-bold tracking-[0.2em] text-on-surface-variant uppercase hover:text-on-surface transition-colors"
+                className="font-headline text-xs font-bold tracking-[0.2em] text-on-surface-variant uppercase hover:text-on-surface transition-colors inline-block"
               >
                 → Shot-Prompts
               </Link>

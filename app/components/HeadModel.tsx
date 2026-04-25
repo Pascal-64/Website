@@ -14,7 +14,7 @@ const SENSITIVITY_X = 0.2;
 const LERP = 0.05;          // smoothness (lower = smoother/slower)
 
 function Model() {
-  const { scene } = useGLTF('/MandalorianHelmet.glb');
+  const { scene } = useGLTF('/3DHead.glb');
   const ref = useRef<THREE.Group>(null);
   const target = useRef({ x: 0, y: 0 });
 
@@ -34,7 +34,7 @@ function Model() {
   return (
     <group ref={ref}>
       <Center>
-        <primitive object={scene} scale={5} />
+        <primitive object={scene} scale={1.18} />
       </Center>
     </group>
   );

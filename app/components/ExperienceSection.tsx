@@ -49,7 +49,7 @@ function TimelineEntry({ entry, isLast, index }: {
   return (
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
-      className="relative flex items-start"
+      className="relative flex items-start min-w-0"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(24px)',
@@ -75,23 +75,23 @@ function TimelineEntry({ entry, isLast, index }: {
         />
       </div>
 
-      <div className="flex-1">
-        <div className="flex justify-between items-start gap-4 mb-4">
-          <h3 className="font-headline text-2xl font-bold text-on-surface flex-1 min-w-0">
+      <div className="flex-1 min-w-0">
+        <div className="flex items-start justify-between gap-4 mb-4 min-w-0">
+          <h3 className="font-headline text-xl sm:text-2xl font-bold text-on-surface flex-1 min-w-0">
             {entry.title}
           </h3>
-          <span className="text-[14px] font-mono tracking-widest text-on-surface-variant/40 uppercase shrink-0 pt-1" style={{ whiteSpace: 'nowrap' }}>
+          <span className="hidden md:block text-[14px] font-mono tracking-widest text-on-surface-variant/40 uppercase shrink-0 pt-1 whitespace-nowrap">
             {entry.level}
           </span>
         </div>
         <p className="text-on-surface-variant leading-relaxed mb-6 max-w-2xl">
           {entry.body}
         </p>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 max-w-full min-w-0">
           {entry.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 bg-secondary/5 border border-secondary/20 text-[9px] font-bold text-secondary rounded-sm uppercase tracking-widest"
+              className="inline-flex px-2.5 sm:px-3 py-1 bg-secondary/5 border border-secondary/20 text-[8px] sm:text-[9px] font-bold text-secondary rounded-sm uppercase tracking-widest"
             >
               {tag}
             </span>

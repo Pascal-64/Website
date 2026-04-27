@@ -70,6 +70,13 @@ body {
   background: var(--color-surface);
   color: var(--color-on-surface);
   font-family: var(--font-body);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 ::selection {

@@ -10,10 +10,10 @@ const TERMS = [
 ];
 
 const PALETTE: [number, number, number][] = [
-  [160, 203, 243], // primary
-  [76,  214, 251], // secondary
-  [98,  220, 175], // tertiary
-  [130, 180, 220], // muted primary
+  [160, 203, 243],
+  [76,  214, 251],
+  [98,  220, 175],
+  [130, 180, 220],
 ];
 
 interface Bubble {
@@ -30,17 +30,26 @@ interface Bubble {
   label: string;
 }
 
-function spawn(w: number, h: number, startY?: number): Bubble {
+function spawn(w: number, h: number, isMobile: boolean, startY?: number): Bubble {
   const label = TERMS[Math.floor(Math.random() * TERMS.length)];
-  const radius = Math.max(label.length * 5.5 + 12, 28) + Math.random() * 10;
+  const minR = isMobile ? 18 : 24;
+  const maxR = isMobile ? 48 : 70;
+  const radius = Math.min(
+    Math.max(label.length * (isMobile ? 4 : 5.5) + 10, minR) + Math.random() * 10,
+    maxR
+  );
   const [r, g, b] = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+  // Clamp x so bubbles never spawn off-screen
+  const x = radius + Math.random() * Math.max(0, w - 2 * radius);
   return {
-    x: Math.random() * w,
+    x,
     y: startY ?? h + radius,
     radius,
-    vx: (Math.random() - 0.5) * 0.15,
+    vx: (Math.random() - 0.5) * 0.12,
     vy: -(Math.random() * 0.18 + 0.05),
-    baseOpacity: Math.random() * 0.22 + 0.06,
+    baseOpacity: isMobile
+      ? Math.random() * 0.14 + 0.04
+      : Math.random() * 0.22 + 0.06,
     r, g, b,
     phase: Math.random() * Math.PI * 2,
     label,
@@ -59,15 +68,25 @@ export function BubbleCanvas() {
     let rafId: number;
     let bubbles: Bubble[] = [];
 
+    const isMobile = () => canvas.clientWidth < 640;
+
     const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
+      // Clamp existing bubbles into new bounds
+      const { width, height } = canvas;
+      bubbles.forEach(b => {
+        b.x = Math.min(Math.max(b.x, b.radius), width - b.radius);
+        b.y = Math.min(Math.max(b.y, -b.radius), height + b.radius);
+      });
     };
 
     const init = () => {
       resize();
-      bubbles = Array.from({ length: 38 }, () =>
-        spawn(canvas.width, canvas.height, Math.random() * canvas.height)
+      const mobile = isMobile();
+      const count = mobile ? 14 : 38;
+      bubbles = Array.from({ length: count }, () =>
+        spawn(canvas.width, canvas.height, mobile, Math.random() * canvas.height)
       );
     };
 
@@ -76,31 +95,30 @@ export function BubbleCanvas() {
       ctx.clearRect(0, 0, width, height);
 
       const t = Date.now() * 0.001;
+      const mobile = isMobile();
 
       for (let i = 0; i < bubbles.length; i++) {
         const b = bubbles[i];
         b.x += b.vx + Math.sin(t * 0.4 + b.phase) * 0.12;
         b.y += b.vy;
 
+        // Clamp x so bubbles never go off-screen
+        b.x = Math.min(Math.max(b.x, b.radius), width - b.radius);
+
         if (b.y + b.radius < 0) {
-          bubbles[i] = spawn(width, height);
+          bubbles[i] = spawn(width, height, mobile);
           continue;
         }
 
-        const { r, g, bl: _bl, baseOpacity: a, radius, x, y, label } = {
-          ...b,
-          bl: b.b,
-        };
-        const col = `${b.r},${b.g},${b.b}`;
+        const { r, g, b: bl, baseOpacity: a, radius, x, y, label } = b;
+        const col = `${r},${g},${bl}`;
 
-        // circle stroke
         ctx.beginPath();
         ctx.arc(x, y, radius, 0, Math.PI * 2);
         ctx.strokeStyle = `rgba(${col},${a})`;
         ctx.lineWidth = 0.9;
         ctx.stroke();
 
-        // inner radial fill
         const grad = ctx.createRadialGradient(
           x - radius * 0.28, y - radius * 0.28, 0,
           x, y, radius
@@ -110,12 +128,11 @@ export function BubbleCanvas() {
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // label text
-        const fontSize = Math.max(9, Math.min(radius * 0.45, 14));
+        const fontSize = Math.max(8, Math.min(radius * 0.42, mobile ? 11 : 14));
         ctx.font = `600 ${fontSize}px 'Space Grotesk', sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillStyle = `rgba(${col},${Math.min(a * 2.2, 0.55)})`;
+        ctx.fillStyle = `rgba(${col},${Math.min(a * 2.2, 0.45)})`;
         ctx.fillText(label, x, y);
       }
 
@@ -125,7 +142,16 @@ export function BubbleCanvas() {
     init();
     tick();
 
-    const ro = new ResizeObserver(resize);
+    const ro = new ResizeObserver(() => {
+      const prevMobile = bubbles.length === 14;
+      const nowMobile = isMobile();
+      if (prevMobile !== nowMobile) {
+        // Viewport category changed — reinitialise bubbles
+        init();
+      } else {
+        resize();
+      }
+    });
     ro.observe(canvas);
 
     return () => {
@@ -137,13 +163,7 @@ export function BubbleCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      style={{
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        display: 'block',
-      }}
+      className="h-full w-full block"
     />
   );
 }

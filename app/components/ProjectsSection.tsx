@@ -36,7 +36,7 @@ const PROJECTS = [
     iconColor: 'var(--color-tertiary)',
     date: '2026.03',
     title: 'Quartz Wiki',
-    body: 'Persönliche Wissensdatenbank auf Basis von Obsidian und Quartz — strukturierte Markdown-Notizen, automatisch als statische Website publiziert mit Graph-Ansicht, Volltextsuche und verschachtelter Navigation.',
+    body: 'Persönliche Wissensdatenbank auf Basis von Obsidian und Quartz — strukturierte Markdown-Notizen, automatisch als statische Website publiziert mit Graph-Ansicht, Agent sucht und füllt Gaps.',
     href: '/projects/quartz-wiki',
     bgImage: '/QuartzWiki.png',
   },

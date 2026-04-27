@@ -104,9 +104,11 @@ export function AboutSection() {
   const [sectionRef, sectionVisible] = useReveal(0.1);
 
   return (
-    <section id="systems" className="relative py-32 px-10 bg-surface overflow-hidden">
+    <section id="systems" className="relative w-full py-32 px-4 sm:px-6 md:px-10 bg-surface overflow-hidden">
       {/* Canvas background layer */}
-      <BubbleCanvas />
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <BubbleCanvas />
+      </div>
 
       {/* Top fade overlay — z-10 */}
       <div

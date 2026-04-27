@@ -12,11 +12,11 @@ const NAV_LINKS = [
 export function TopNavBar() {
   const pathname = usePathname();
   return (
-    <nav className="fixed top-8 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-screen-xl z-50 bg-surface/60 backdrop-blur-md border border-white/10 rounded-lg shadow-2xl">
-      <div className="max-w-screen-2xl mx-auto flex justify-between items-center gap-8 py-5 px-8">
+    <nav className="fixed top-4 left-4 right-4 z-50 bg-surface/70 backdrop-blur-md border border-white/10 rounded-lg shadow-2xl md:top-8 md:left-1/2 md:right-auto md:w-[calc(100%-40px)] md:max-w-screen-xl md:-translate-x-1/2">
+      <div className="flex w-full items-center justify-between gap-3 px-4 py-3 md:gap-8 md:px-8 md:py-5">
         <Link
           href="/"
-          className="text-xl font-bold tracking-tighter text-on-surface font-headline shrink-0"
+          className="min-w-0 truncate font-headline text-sm font-bold tracking-tighter text-on-surface sm:text-base md:text-xl"
         >
           PASCALPETERS.DEV
         </Link>
@@ -40,9 +40,10 @@ export function TopNavBar() {
         </div>
         <Link
           href="/#contact"
-          className="font-label tracking-tight font-medium uppercase text-xs text-secondary bg-surface-container-lowest/40 backdrop-blur-xl hover:bg-surface-container-high transition-all duration-200 px-4 py-2 rounded-sm border border-primary/20 active:scale-95 shrink-0"
+          className="shrink-0 font-label tracking-tight font-medium uppercase text-[10px] sm:text-xs text-secondary bg-surface-container-lowest/40 backdrop-blur-xl hover:bg-surface-container-high transition-all duration-200 px-3 py-2 md:px-4 rounded-sm border border-primary/20 active:scale-95"
         >
-          CONTACT_SYS_ADMIN
+          <span className="md:hidden">CONTACT</span>
+          <span className="hidden md:inline">CONTACT_SYS_ADMIN</span>
         </Link>
       </div>
     </nav>

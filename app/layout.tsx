@@ -36,7 +36,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full bg-surface text-on-surface font-body selection:bg-primary-container selection:text-primary">
+      <body className="min-h-full w-full overflow-x-hidden bg-surface text-on-surface font-body selection:bg-primary-container selection:text-primary">
         {children}
       </body>
     </html>

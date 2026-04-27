@@ -45,19 +45,19 @@ function TypingText() {
 
 export function HeroSection() {
   return (
-    <section className="relative px-10 pt-48 pb-40 overflow-hidden bg-surface">
+    <section className="relative isolate w-full overflow-hidden bg-surface px-5 pt-32 pb-24 sm:px-6 sm:pt-36 sm:pb-28 md:px-10 md:pt-48 md:pb-40">
       <div
-        className="absolute inset-0 z-0 opacity-80"
+        className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-80"
         style={{
           backgroundImage: 'url(/background.webp)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: '55% center',
           filter: 'saturate(1.5) contrast(1.25)',
         }}
       />
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-surface/30 via-transparent to-surface" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-surface/30 via-transparent to-surface" />
 
-      <div className="relative z-20 max-w-screen-xl mx-auto">
+      <div className="relative z-10 max-w-screen-xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center lg:items-center gap-12 lg:gap-20 mb-12">
           <div className="flex-1">
             {/* #2 fade-up heading */}

@@ -19,7 +19,7 @@ function useReveal(threshold = 0.2) {
 }
 
 const LINKS = [
-  { icon: 'mail', label: 'EMAIL', href: 'mailto:contact@pascalpeters.info' },
+  { icon: 'mail', label: 'EMAIL', href: 'mailto:pascalpeters3001@gmail.com' },
   { icon: 'link', label: 'LINKEDIN', href: 'https://www.linkedin.com/in/pascal-peters-662a87218/' },
   { icon: 'code', label: 'GITHUB', href: 'https://github.com/Pascal-64/' },
 ];

@@ -46,15 +46,16 @@ function TypingText() {
 export function HeroSection() {
   return (
     <section className="relative px-10 pt-48 pb-40 overflow-hidden bg-surface">
-      <div className="absolute inset-0 z-0 opacity-80">
-        <img
-          alt=""
-          aria-hidden
-          className="w-full h-full object-cover saturate-150 contrast-125"
-          src="/background.webp"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-surface/30 via-transparent to-surface" />
-      </div>
+      <div
+        className="absolute inset-0 z-0 opacity-80"
+        style={{
+          backgroundImage: 'url(/background.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'saturate(1.5) contrast(1.25)',
+        }}
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-surface/30 via-transparent to-surface" />
 
       <div className="relative z-20 max-w-screen-xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center lg:items-center gap-12 lg:gap-20 mb-12">

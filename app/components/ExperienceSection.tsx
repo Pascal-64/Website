@@ -77,10 +77,9 @@ function TimelineEntry({ entry, isLast, index }: {
 
       <div className="flex-1">
         <div className="flex justify-between items-start gap-4 mb-4">
-          <h3 className="font-headline text-2xl font-bold text-on-surface flex-1">
+          <h3 className="font-headline text-2xl font-bold text-on-surface flex-1 min-w-0">
             {entry.title}
           </h3>
-          {/* #6 date fixed right-aligned with nowrap */}
           <span className="text-[14px] font-mono tracking-widest text-on-surface-variant/40 uppercase shrink-0 pt-1" style={{ whiteSpace: 'nowrap' }}>
             {entry.level}
           </span>

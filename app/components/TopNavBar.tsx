@@ -13,10 +13,10 @@ export function TopNavBar() {
   const pathname = usePathname();
   return (
     <nav className="fixed top-8 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-screen-xl z-50 bg-surface/60 backdrop-blur-md border border-white/10 rounded-lg shadow-2xl">
-      <div className="max-w-screen-2xl mx-auto flex justify-between items-center py-5 px-8">
+      <div className="max-w-screen-2xl mx-auto flex justify-between items-center gap-8 py-5 px-8">
         <Link
           href="/"
-          className="text-xl font-bold tracking-tighter text-on-surface font-headline"
+          className="text-xl font-bold tracking-tighter text-on-surface font-headline shrink-0"
         >
           PASCALPETERS.DEV
         </Link>
@@ -40,7 +40,7 @@ export function TopNavBar() {
         </div>
         <Link
           href="/#contact"
-          className="font-label tracking-tight font-medium uppercase text-xs text-secondary bg-surface-container-lowest/40 backdrop-blur-xl hover:bg-surface-container-high transition-all duration-200 px-4 py-2 rounded-sm border border-primary/20 active:scale-95"
+          className="font-label tracking-tight font-medium uppercase text-xs text-secondary bg-surface-container-lowest/40 backdrop-blur-xl hover:bg-surface-container-high transition-all duration-200 px-4 py-2 rounded-sm border border-primary/20 active:scale-95 shrink-0"
         >
           CONTACT_SYS_ADMIN
         </Link>

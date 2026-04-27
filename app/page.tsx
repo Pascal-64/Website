@@ -3,7 +3,6 @@ import { HeroSection } from "./components/HeroSection";
 import { AboutSection } from "./components/AboutSection";
 import { ExperienceSection } from "./components/ExperienceSection";
 import { ProjectsSection } from "./components/ProjectsSection";
-import { TelemetrySection } from "./components/TelemetrySection";
 import { ContactSection } from "./components/ContactSection";
 import { SiteFooter } from "./components/SiteFooter";
 
@@ -13,10 +12,9 @@ export default function Home() {
       <TopNavBar />
       <main>
         <HeroSection />
-        <ExperienceSection />
         <AboutSection />
+        <ExperienceSection />
         <ProjectsSection />
-        <TelemetrySection />
         <ContactSection />
       </main>
       <SiteFooter />

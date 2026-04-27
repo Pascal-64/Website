@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import { BubbleCanvas } from './BubbleCanvas';
 
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLElement | null>(null);
@@ -20,32 +21,32 @@ function useReveal(threshold = 0.1) {
 
 const CAPABILITIES = [
   {
-    icon: 'point_of_sale',
-    title: 'POS Systeme',
-    body: ['Fiskal- & Länderanforderungen', 'Kassensysteme Tagesgeschäft', 'Deployment & Rollouts'],
+    icon: 'psychology',
+    title: 'Local AI',
+    body: ['Ollama ', 'Eigener Lokaler Agent', 'Prompt-Profile', 'Laufzeit- und Token-Metriken'],
     accentClass: 'border-l-secondary-container',
     accentStyle: 'var(--color-secondary-container)',
     iconClass: 'text-secondary',
   },
   {
-    icon: 'terminal',
-    title: 'Backend',
-    body: ['Java', 'Spring Boot', 'Fehlerhandling & Stabilität'],
+    icon: 'hub',
+    title: 'Knowledge Systems',
+    body: ['LLM Wiki', 'Obsidian', 'Strukturierte Markdown-Basen', 'Machine Learning'],
     accentStyle: 'var(--color-tertiary)',
     iconClass: 'text-tertiary',
     id: 'automation',
   },
   {
-    icon: 'analytics',
-    title: 'Datenbanken',
-    body: ['Schnittstellen SAP', 'SQL', 'Buchungsdaten'],
+    icon: 'web',
+    title: 'Web Projects',
+    body: ['Dashboard', 'Portfolio-Seite', 'Obsidian / Quartz', 'Ollama GUI'],
     accentStyle: 'var(--color-outline)',
     iconClass: 'text-outline',
   },
   {
-    icon: 'api',
-    title: 'API',
-    body: ['REST API Integration', 'POS ↔ Backend', 'Monitoring & Logging von Schnittstellen'],
+    icon: 'auto_mode',
+    title: 'Automation',
+    body: ['Agent-Workflows', 'Gap-Filling-Pipeline', 'Build Automation', 'API-Integrationen'],
     accentStyle: 'var(--color-primary)',
     iconClass: 'text-primary',
   },
@@ -63,20 +64,23 @@ function CapabilityCard({ item, index }: { item: typeof CAPABILITIES[0]; index: 
       onMouseLeave={() => setHovered(false)}
       style={{
         borderLeft: `2px solid ${item.accentStyle}`,
-        background: hovered ? 'var(--color-surface-container)' : 'var(--color-surface-container-low)',
+        background: hovered
+          ? 'rgba(40, 42, 46, 0.55)'
+          : 'rgba(26, 28, 32, 0.45)',
+        backdropFilter: 'blur(18px)',
+        WebkitBackdropFilter: 'blur(18px)',
         transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
-        transition: 'background 0.2s, transform 0.2s',
+        transition: 'background 0.25s, transform 0.25s, backdrop-filter 0.25s',
         opacity: visible ? 1 : 0,
         animation: visible ? `fadeUp 0.5s ease ${index * 80}ms forwards` : 'none',
       }}
       className="p-8"
     >
-      {/* #12 icon scale on hover */}
       <span
         className={`material-symbols-outlined ${item.iconClass} mb-4 block`}
         style={{
-          transition: 'transform 0.2s',
-          transform: hovered ? 'scale(1.1)' : 'scale(1)',
+          transition: 'transform 0.25s ease',
+          transform: hovered ? 'translateX(-5px) scale(1.25)' : 'translateX(0) scale(1)',
         }}
       >
         {item.icon}
@@ -100,27 +104,57 @@ export function AboutSection() {
   const [sectionRef, sectionVisible] = useReveal(0.1);
 
   return (
-    <section id="systems" className="relative py-32 px-10 bg-surface">
-      {/* #11 scroll-reveal wrapper */}
+    <section id="systems" className="relative py-32 px-10 bg-surface overflow-hidden">
+      {/* Canvas background layer */}
+      <BubbleCanvas />
+
+      {/* Top fade overlay — z-10 */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '22%',
+          background: 'linear-gradient(to bottom, var(--color-surface) 0%, transparent 100%)',
+          zIndex: 10,
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Bottom fade overlay — z-10 */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '22%',
+          background: 'linear-gradient(to top, var(--color-surface) 0%, transparent 100%)',
+          zIndex: 10,
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Content — z-20 */}
       <div
         ref={sectionRef as React.RefObject<HTMLDivElement>}
-        className="max-w-screen-xl mx-auto"
-        style={{ opacity: sectionVisible ? 1 : 0, transition: 'opacity 0.6s' }}
+        className="relative max-w-screen-xl mx-auto"
+        style={{ opacity: sectionVisible ? 1 : 0, transition: 'opacity 0.6s', zIndex: 20 }}
       >
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="md:col-span-4">
             <h2 className="font-headline text-xs font-bold tracking-[0.2em] text-tertiary uppercase mb-8">
-              Überblick
+              About
             </h2>
             <div className="text-4xl font-headline font-medium text-on-surface leading-tight mb-6">
-              Build. Fix. Improve
+              Build. Fix . Optimize. Automate. Connect.
             </div>
             <p className="text-sm text-on-surface-variant leading-relaxed">
-              Backend-Entwicklung, API-Integration und POS-Systeme — mit Fokus auf Stabilität, Performance und saubere Architektur.
+              Projekte rund um lokale KI, automatisierte Wissenssysteme und moderne Weboberflächen. Ollama-Workflows über Markdown-Wikis bis zu deploybaren Portfolio- und Dokumentationsseiten.
             </p>
           </div>
-          {/* #13 card lift + #12 icon scale applied in CapabilityCard */}
-          <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-1">
+          <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
             {CAPABILITIES.map((item, i) => (
               <CapabilityCard key={item.title} item={item} index={i} />
             ))}

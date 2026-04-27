@@ -59,6 +59,12 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-32 px-10 bg-surface">
+      <style>{`
+        @keyframes text-shimmer {
+          0%   { background-position: 200% center; }
+          100% { background-position: -200% center; }
+        }
+      `}</style>
       <div className="max-w-screen-xl mx-auto text-center">
         <h2
           ref={headingRef as React.RefObject<HTMLHeadingElement>}
@@ -69,9 +75,21 @@ export function ContactSection() {
             transition: 'opacity 0.7s, transform 0.7s',
           }}
         >
-          Bereit für neue
+          Bereit für
           <br />
-          <span style={{ color: '#00B4D8' }}>System-Optimierungen?</span>
+          <span
+            style={{
+              background: 'linear-gradient(90deg, #00B4D8 0%, #00B4D8 30%, #a8eeff 50%, #00B4D8 70%, #00B4D8 100%)',
+              backgroundSize: '300% 100%',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              color: 'transparent',
+              animation: 'text-shimmer 7s linear infinite',
+            }}
+          >
+            Optimierungen?
+          </span>
         </h2>
         {/* #14 staggered link reveal */}
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">

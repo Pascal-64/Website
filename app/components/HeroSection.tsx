@@ -8,7 +8,7 @@ const HeadModel = dynamic(
   { ssr: false }
 );
 
-const TYPING_LINES = ['Softwareentwickler Backend', 'LLMs | Machine Learning | APIs'];
+const TYPING_LINES = ['Softwareentwickler Backend', 'LLMs | Machine Learning | Workflows'];
 const FULL_TEXT = TYPING_LINES.join('\n');
 const TYPING_SPEED = 35;
 const TYPING_DELAY = 400;

@@ -1,8 +1,8 @@
 # pascalpeters.dev
 
-Persönliche Portfolio-Website von Pascal Peters — Softwareentwickler mit Fokus auf Backend, LLMs und Prompt Engineering.
+Persönliche Portfolio-Website von Pascal Peters — Softwareentwickler mit Fokus auf Local AI, Knowledge Systems, Web Projects und Automation.
 
-Gebaut mit **Next.js 15** (App Router), **Tailwind CSS** und dem Design System **Structural Calm**.
+Gebaut mit **Next.js 15** (App Router), **Tailwind CSS v4** und dem Design System **Structural Calm**.
 
 ---
 
@@ -10,42 +10,68 @@ Gebaut mit **Next.js 15** (App Router), **Tailwind CSS** und dem Design System *
 
 | Technologie | Zweck |
 |---|---|
-| Next.js 15 | Framework (App Router, Static Export) |
+| Next.js 15 | Framework (App Router) |
 | Tailwind CSS v4 | Styling |
 | Three.js / React Three Fiber | 3D-Kopfmodell in der Hero Section |
 | Space Grotesk / Inter | Schriften (Headline / Body) |
 | Material Symbols | Icons |
+| Canvas API | Animierter Bubble-Hintergrund (About Section) |
 
 ---
 
 ## Seitenstruktur
 
 ```
-/                          → Startseite (Hero, Profil, Projekte, Kontakt)
-/wiki                      → Wiki-Übersicht (Kategorien & letzte Einträge)
-/wiki/dev-notes            → Kategorie: Dev Notes
-/wiki/workflow             → Kategorie: Workflow
-/wiki/datenbanken          → Kategorie: Datenbanken
-/wiki/ai-llm               → Kategorie: AI / LLM
-/wiki/obsidian-vault-wiki  → Eintrag: Obsidian Vault Wiki (inkl. Live-Preview)
-/wiki/ollama-gui-projekt   → Eintrag: Ollama GUI Projekt
-/wiki/lokale-ollama-modelle-als-agents → Eintrag: Lokale Ollama Modelle als Agents
-/wiki/prompt-engineering               → Eintrag: Prompt Engineering (Index)
-/wiki/prompt-engineering/basic-prompts
-/wiki/prompt-engineering/step-by-step-force
-/wiki/prompt-engineering/shot-prompts
-/projects/ollama-gui       → Projektseite: Ollama GUI
-/projects/llms             → Projektseite: LLMs
-/projects/prompt-engineering → Projektseite: Prompt Engineering
-/impressum                 → Impressum & Datenschutz
-/datenschutz               → Datenschutzerklärung
+/                                              → Startseite
+│  ├── HeroSection                             → Intro, 3D-Modell, Typing-Animation
+│  ├── AboutSection                            → Capabilities-Cards mit Bubble-Canvas
+│  ├── ExperienceSection                       → Timeline (Berufserfahrung)
+│  ├── ProjectsSection                         → Selected Projects mit Hover-Hintergrund
+│  └── ContactSection                          → Links + Shimmer-Headline
+│
+/projects                                      → Projektübersicht
+/projects/ollama-gui                           → Ollama GUI (Streamlit, Local AI)
+/projects/quartz-wiki                          → Quartz Wiki (Obsidian + Static Site)
+/projects/prompt-engineering                   → Prompt Engineering
+│
+/wiki                                          → Wiki-Übersicht (Projekte + Kategorien)
+/wiki/dev-notes                                → Kategorie: Dev Notes
+/wiki/workflow                                 → Kategorie: Workflow
+/wiki/datenbanken                              → Kategorie: Datenbanken
+/wiki/ai-llm                                   → Kategorie: AI / LLM
+/wiki/obsidian-vault-wiki                      → Eintrag: Obsidian Vault Wiki (Live-Preview)
+/wiki/ollama-gui-projekt                       → Eintrag: Ollama GUI Projekt
+/wiki/lokale-ollama-modelle-als-agents         → Eintrag: Lokale Ollama Modelle als Agents
+/wiki/prompt-engineering                       → Eintrag: Prompt Engineering (Index)
+/wiki/prompt-engineering/basic-prompts         → Basic Prompts
+/wiki/prompt-engineering/step-by-step-force    → Step-by-Step Force
+/wiki/prompt-engineering/shot-prompts          → Shot Prompts
+│
+/impressum                                     → Impressum
+/datenschutz                                   → Datenschutzerklärung
 ```
+
+---
+
+## Komponenten
+
+| Komponente | Beschreibung |
+|---|---|
+| `TopNavBar` | Fixed Glassmorphism-Navbar, responsiv (mobile: `left-4 right-4`) |
+| `HeroSection` | Hero mit Background-Bild, 3D-Kopf, Typing-Animation |
+| `AboutSection` | Capabilities-Cards über animiertem Bubble-Canvas-Hintergrund |
+| `BubbleCanvas` | Canvas-Animation mit Tech-Begriff-Bubbles, mobile-responsiv |
+| `ExperienceSection` | Berufliche Timeline mit Dot-Connector |
+| `ProjectsSection` | Projektkarten mit hover-basiertem Hintergrundwechsel |
+| `ContactSection` | Kontaktlinks, Shimmer-Loop-Animation auf Headline |
+| `AnimatedSection` | Scroll-Reveal-Wrapper (IntersectionObserver) |
+| `SiteFooter` | Footer mit System-Status-Indikator |
 
 ---
 
 ## Design System
 
-Das Projekt verwendet das Design System **Structural Calm** (Dokumentation in `DESIGN.md`).
+Das Projekt verwendet das Design System **Structural Calm** (Details in `DESIGN.md`).
 
 Kernprinzipien:
 - Dark Mode (`background: #111318`)
@@ -53,6 +79,7 @@ Kernprinzipien:
 - Space Grotesk für Headlines, Inter für Body-Text
 - Keine runden Ecken (max. `rounded-sm`) für strukturelle Elemente
 - Akzentfarben: Primary `#a0cbf3` · Secondary `#4cd6fb` · Tertiary `#62dcaf`
+- Glassmorphism für schwebende Elemente (`backdrop-blur`, semi-transparente Backgrounds)
 
 ---
 

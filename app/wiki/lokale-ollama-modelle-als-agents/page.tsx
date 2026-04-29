@@ -2,6 +2,9 @@ import Link from "next/link";
 import { TopNavBar } from "../../components/TopNavBar";
 import { SiteFooter } from "../../components/SiteFooter";
 import { AnimatedSection } from "../../components/AnimatedSection";
+import { getPageCode } from "../wikiIndex";
+
+const CODE = getPageCode("/wiki/lokale-ollama-modelle-als-agents");
 
 const SECTIONS = [
   {
@@ -34,7 +37,7 @@ export default function LokaleOllamaModelleAlsAgentsPage() {
                 Wiki / AI & LLM
               </span>
               <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
-                WIKI.0029
+                {CODE}
               </span>
             </div>
             <h1 className="animate-fade-up-1 font-headline text-5xl md:text-6xl font-bold tracking-tighter text-on-surface mb-6">

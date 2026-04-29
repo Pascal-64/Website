@@ -2,19 +2,17 @@ import Link from "next/link";
 import { TopNavBar } from "../components/TopNavBar";
 import { SiteFooter } from "../components/SiteFooter";
 import { AnimatedSection } from "../components/AnimatedSection";
+import { fetchRepos } from "../lib/github";
+import { getPagesWithCodes } from "./wikiIndex";
 
-const CATEGORIES = [
+const STATIC_CATEGORIES = [
   {
     icon: "terminal",
     title: "Dev Notes",
     count: "12",
     accent: "border-tertiary",
     href: "/wiki/dev-notes",
-    items: [
-      "Ollama Projekte",
-      "JUnit Testing Patterns",
-      "Web Projekte",
-    ],
+    items: [] as string[],
   },
   {
     icon: "account_tree",
@@ -30,14 +28,14 @@ const CATEGORIES = [
   },
   {
     icon: "storage",
-    title: "Datenbanken",
+    title: "Data & Systems",
     count: "6",
     accent: "border-outline",
     href: "/wiki/datenbanken",
     items: [
-      "SQL Performance Tuning",
+      "SQL Grundlagen",
       "Backup & Recovery",
-      "NoSQL vs SQL",
+      "Datenfluss-Architekturen",
     ],
   },
   {
@@ -54,47 +52,23 @@ const CATEGORIES = [
   },
 ];
 
-const PROJECTS = [
-  {
-    icon: 'query_stats',
-    iconColor: 'var(--color-primary)',
-    iconBg: 'rgba(0,59,92,0.4)',
-    date: '2026.04',
-    title: 'Ollama GUI',
-    body: 'Streamlit-Oberfläche für lokale Ollama-Modelle mit Profilverwaltung, Token-Tracking und erweiterter Analyse.',
-    href: '/projects/ollama-gui',
-    accent: 'border-primary',
-  },
-  {
-    icon: 'auto_stories',
-    iconColor: 'var(--color-tertiary)',
-    iconBg: 'rgba(0,64,45,0.4)',
-    date: '2026.03',
-    title: 'Quartz Wiki',
-    body: 'Obsidian-basierte Wissensdatenbank, automatisch als statische Website publiziert mit Graph-Ansicht und Volltextsuche.',
-    href: '/projects/quartz-wiki',
-    accent: 'border-tertiary',
-  },
-  {
-    icon: 'settings_suggest',
-    iconColor: 'var(--color-secondary)',
-    iconBg: 'rgba(0,178,214,0.12)',
-    date: '2026.01',
-    title: 'Prompt-Engineering',
-    body: 'Konzeption und Optimierung von Prompts für reproduzierbare Ergebnisse und gezielte Steuerung von Modellverhalten.',
-    href: '/projects/prompt-engineering',
-    accent: 'border-secondary',
-  },
-];
 
-const RECENT = [
-  { code: "DEV.0042", title: "Obsidian Vault Wiki", date: "2026.04", href: "/wiki/obsidian-vault-wiki" },
-  { code: "WIKI.0031", title: "Ollama GUI Projekt", date: "2026.04", href: "/wiki/ollama-gui-projekt" },
-  { code: "WIKI.0030", title: "Prompt Engineering", date: "2026.03", href: "/wiki/prompt-engineering" },
-  { code: "WIKI.0029", title: "Lokale Ollama Modelle als Agents", date: "2026.03", href: "/wiki/lokale-ollama-modelle-als-agents" },
-];
+const RECENT = getPagesWithCodes()
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .slice(0, 4)
+  .map((m) => ({ ...m, displayDate: m.date.slice(0, 7).replace("-", ".") }));
 
-export default function WikiPage() {
+export default async function WikiPage() {
+  const repos = await fetchRepos(3);
+  const devNoteItems =
+    repos.length > 0
+      ? repos.map((r) => r.name)
+      : ["Ollama Projekte", "JUnit Testing Patterns", "Web Projekte"];
+
+  const CATEGORIES = STATIC_CATEGORIES.map((cat) =>
+    cat.title === "Dev Notes" ? { ...cat, items: devNoteItems } : cat
+  );
+
   return (
     <>
       <TopNavBar />
@@ -128,41 +102,6 @@ export default function WikiPage() {
 
         <section className="px-10 pb-24">
           <div className="max-w-screen-xl mx-auto">
-            <AnimatedSection className="flex items-baseline justify-between mb-10">
-              <h2 className="font-headline text-xs font-bold tracking-[0.2em] text-primary uppercase">
-                Projekte
-              </h2>
-              <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
-                {PROJECTS.length} projects
-              </span>
-            </AnimatedSection>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 mb-24">
-              {PROJECTS.map((p, i) => (
-                <AnimatedSection key={p.title} delay={i * 80}>
-                  <Link
-                    href={p.href}
-                    className={`block p-10 bg-surface-container-low border-l-2 ${p.accent} hover:bg-surface-container hover:-translate-y-[2px] transition-all h-full`}
-                  >
-                    <div className="flex items-start justify-between mb-8">
-                      <div
-                        className="w-12 h-12 flex items-center justify-center rounded-sm"
-                        style={{ background: p.iconBg }}
-                      >
-                        <span className="material-symbols-outlined" style={{ color: p.iconColor }}>
-                          {p.icon}
-                        </span>
-                      </div>
-                      <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
-                        {p.date}
-                      </span>
-                    </div>
-                    <h3 className="font-headline text-2xl font-bold text-on-surface mb-3">{p.title}</h3>
-                    <p className="text-sm text-on-surface-variant leading-relaxed">{p.body}</p>
-                  </Link>
-                </AnimatedSection>
-              ))}
-            </div>
-
             <AnimatedSection className="flex items-baseline justify-between mb-10">
               <h2 className="font-headline text-xs font-bold tracking-[0.2em] text-primary uppercase">
                 Kategorien
@@ -233,7 +172,7 @@ export default function WikiPage() {
                     </span>
                   </div>
                   <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/40 uppercase">
-                    {entry.date}
+                    {entry.displayDate}
                   </span>
                 </Link>
               ))}

@@ -2,6 +2,9 @@ import Link from "next/link";
 import { TopNavBar } from "../../components/TopNavBar";
 import { SiteFooter } from "../../components/SiteFooter";
 import { AnimatedSection } from "../../components/AnimatedSection";
+import { getPageCode } from "../wikiIndex";
+
+const CODE = getPageCode("/wiki/obsidian-vault-wiki");
 
 const SECTIONS = [
   {
@@ -34,7 +37,7 @@ export default function ObsidianVaultWikiPage() {
                 Wiki / Dev Notes
               </span>
               <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
-                DEV.0042
+                {CODE}
               </span>
             </div>
             <h1 className="animate-fade-up-1 font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-6">

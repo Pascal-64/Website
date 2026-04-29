@@ -2,12 +2,13 @@ import Link from "next/link";
 import { TopNavBar } from "../../components/TopNavBar";
 import { SiteFooter } from "../../components/SiteFooter";
 import { AnimatedSection } from "../../components/AnimatedSection";
+import { getPagesWithCodes } from "../wikiIndex";
 
-const ENTRIES = [
-  { code: "WIKI.0031", title: "Prompt Engineering", date: "2026.03.20", href: "/wiki/prompt-engineering" },
-  { code: "WIKI.0030", title: "Ollama GUI Projekt", date: "2026.04.05", href: "/wiki/ollama-gui-projekt" },
-  { code: "WIKI.0029", title: "Lokale Ollama Modelle als Agents", date: "2026.03.28", href: "/wiki/lokale-ollama-modelle-als-agents" },
-];
+const ENTRIES = getPagesWithCodes()
+  .filter((m) => m.category === "ai-llm")
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .map((m) => ({ ...m, displayDate: m.date.replace(/-/g, ".") }));
+  // "2026-04-05" → "2026.04.05"
 
 const TOPICS = [
   "Ollama Setup",
@@ -70,7 +71,7 @@ export default function AiLlmPage() {
                     <span className="font-headline font-medium text-on-surface">{entry.title}</span>
                   </div>
                   <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/40 uppercase">
-                    {entry.date}
+                    {entry.displayDate}
                   </span>
                 </Link>
               ))}

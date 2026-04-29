@@ -2,6 +2,9 @@ import Link from "next/link";
 import { TopNavBar } from "../../components/TopNavBar";
 import { SiteFooter } from "../../components/SiteFooter";
 import { AnimatedSection } from "../../components/AnimatedSection";
+import { getPageCode } from "../wikiIndex";
+
+const CODE = getPageCode("/wiki/ollama-gui-projekt");
 
 const SECTIONS = [
   {
@@ -34,7 +37,7 @@ export default function OllamaGuiProjektPage() {
                 Wiki / AI & LLM
               </span>
               <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/50 uppercase">
-                WIKI.0030
+                {CODE}
               </span>
             </div>
             <div className="flex items-start justify-between gap-6 mb-6 animate-fade-up-1">

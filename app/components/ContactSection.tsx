@@ -26,31 +26,39 @@ const LINKS = [
 
 function ContactLink({ link, index }: { link: typeof LINKS[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
+  const [animated, setAnimated] = useState(false);
   const [ref, visible] = useReveal(0.2);
 
   return (
-    <a
-      ref={ref as React.RefObject<HTMLAnchorElement>}
-      href={link.href}
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex items-center gap-3"
+      onAnimationEnd={() => setAnimated(true)}
       style={{
-        color: hovered ? 'var(--color-primary)' : 'var(--color-on-surface-variant)',
-        textDecoration: 'none',
-        transition: 'color 0.15s, transform 0.2s',
-        transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
-        opacity: visible ? 1 : 0,
-        animation: visible ? `fadeUp 0.6s ease ${index * 100}ms forwards` : 'none',
+        opacity: animated ? 1 : visible ? undefined : 0,
+        animation: animated ? 'none' : visible ? `fadeUp 0.6s ease ${index * 100}ms forwards` : 'none',
       }}
     >
-      <span className="material-symbols-outlined">{link.icon}</span>
-      <span className="font-headline font-bold text-sm tracking-widest uppercase">
-        {link.label}
-      </span>
-    </a>
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3"
+        style={{
+          color: hovered ? 'var(--color-primary)' : 'var(--color-on-surface-variant)',
+          textDecoration: 'none',
+          transition: 'color 0.2s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          transform: hovered ? 'translateY(-4px) scale(1.1)' : 'translateY(0) scale(1)',
+          display: 'inline-flex',
+        }}
+      >
+        <span className="material-symbols-outlined">{link.icon}</span>
+        <span className="font-headline font-bold text-sm tracking-widest uppercase">
+          {link.label}
+        </span>
+      </a>
+    </div>
   );
 }
 

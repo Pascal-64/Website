@@ -37,6 +37,12 @@ export function getPagesWithCodes() {
 
 export const WIKI_PAGES: PageMeta[] = [
   {
+    title: "LLM Workbench",
+    date: "2026-04-15",
+    href: "/wiki/llm-workbench",
+    category: "ai-llm",
+  },
+  {
     title: "Obsidian Vault Wiki",
     date: "2026-04-18",
     href: "/wiki/obsidian-vault-wiki",

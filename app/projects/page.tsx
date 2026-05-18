@@ -4,7 +4,21 @@ import { TopNavBar } from "../components/TopNavBar";
 import { SiteFooter } from "../components/SiteFooter";
 import { AnimatedSection } from "../components/AnimatedSection";
 
-const PROJECTS = [
+const PROJECTS: {
+  index: string;
+  icon: string;
+  iconColor: string;
+  iconBg: string;
+  accentStyle: string;
+  accentClass: string;
+  date: string;
+  label: string;
+  title: string;
+  body: string;
+  tech: string[];
+  href: string;
+  image: string | null;
+}[] = [
   {
     index: '01',
     icon: 'query_stats',
@@ -37,6 +51,21 @@ const PROJECTS = [
   },
   {
     index: '03',
+    icon: 'hub',
+    iconColor: 'var(--color-primary)',
+    iconBg: 'rgba(0,59,92,0.4)',
+    accentStyle: 'var(--color-primary)',
+    accentClass: 'border-primary',
+    date: '2026.04',
+    label: 'LLM Tooling',
+    title: 'LLM Workbench',
+    body: 'Private Web-Oberfläche für lokale LLM- und Coding-Agent-Workflows. Verbindet Ollama-Hosts, Projektkontext, Runner, Live-Logs, Git-Diffs und Agent-CLIs in einer kontrollierten Arbeitsumgebung.',
+    tech: ['Next.js', 'FastAPI', 'Python', 'PostgreSQL', 'SSE', 'Ollama'],
+    href: '/projects/llm-workbench',
+    image: '/LLMWorkbench.png',
+  },
+  {
+    index: '04',
     icon: 'settings_suggest',
     iconColor: 'var(--color-secondary)',
     iconBg: 'rgba(0,178,214,0.12)',
@@ -157,20 +186,31 @@ export default function ProjectsPage() {
 
                     {/* Image column */}
                     <div className="lg:col-span-8 relative overflow-hidden" style={{ minHeight: '360px' }}>
-                      <Image
-                        src={p.image}
-                        alt={`${p.title} Screenshot`}
-                        fill
-                        className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-                        sizes="(max-width: 1024px) 100vw, 66vw"
-                      />
-                      {/* left fade into info column */}
-                      <div
-                        className="absolute inset-y-0 left-0 w-24 pointer-events-none"
-                        style={{
-                          background: 'linear-gradient(to right, var(--color-surface-container-low), transparent)',
-                        }}
-                      />
+                      {p.image ? (
+                        <>
+                          <Image
+                            src={p.image}
+                            alt={`${p.title} Screenshot`}
+                            fill
+                            className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                            sizes="(max-width: 1024px) 100vw, 66vw"
+                          />
+                          {/* left fade into info column */}
+                          <div
+                            className="absolute inset-y-0 left-0 w-24 pointer-events-none"
+                            style={{
+                              background: 'linear-gradient(to right, var(--color-surface-container-low), transparent)',
+                            }}
+                          />
+                        </>
+                      ) : (
+                        <div className="absolute inset-0 bg-surface-container-lowest flex items-center justify-center">
+                          <div className="flex flex-col items-center gap-3">
+                            <span className="material-symbols-outlined text-4xl text-on-surface-variant/20">image</span>
+                            <span className="font-mono text-[10px] tracking-widest text-on-surface-variant/30 uppercase">Screenshot — coming soon</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Link>

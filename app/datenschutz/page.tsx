@@ -25,10 +25,10 @@ const SECTIONS = [
         <br />
         E-Mail:{" "}
         <a
-          href="mailto:contact@pascalpeters.info"
+          href="mailto:Kontakt@pascalpeters.dev"
           className="text-secondary hover:underline"
         >
-          contact@pascalpeters.info
+          Kontakt@pascalpeters.dev
         </a>
       </p>
     ),

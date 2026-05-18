@@ -41,14 +41,14 @@ const PROJECTS = [
     bgImage: '/QuartzWiki.png',
   },
   {
-    icon: 'settings_suggest',
-    iconBg: 'rgba(0,178,214,0.12)',
-    iconColor: 'var(--color-secondary)',
-    date: '2026.01',
-    title: 'Prompt-Engineering',
-    body: 'Konzeption und Optimierung von Prompts für reproduzierbare Ergebnisse. Klare Strukturen, definierte Abläufe und gezielte Steuerung von Modellverhalten für konkrete Anwendungsfälle.',
-    href: '/projects/prompt-engineering',
-    bgImage: '/PromptEngineering.png',
+    icon: 'hub',
+    iconBg: 'rgba(0,59,92,0.4)',
+    iconColor: 'var(--color-primary)',
+    date: '2026.04',
+    title: 'LLM Workbench',
+    body: 'Private Web-Oberfläche für lokale LLM- und Coding-Agent-Workflows. Verbindet Ollama-Hosts, Projektkontext, Runner, Live-Logs, Git-Diffs und Agent-CLIs in einer kontrollierten Arbeitsumgebung.',
+    href: '/projects/llm-workbench',
+    bgImage: '/LLMWorkbench.png',
   },
 ];
 

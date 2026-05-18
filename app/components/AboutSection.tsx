@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import Link from 'next/link';
 import { BubbleCanvas } from './BubbleCanvas';
 
 function useReveal(threshold = 0.1) {
@@ -27,6 +28,7 @@ const CAPABILITIES = [
     accentClass: 'border-l-secondary-container',
     accentStyle: 'var(--color-secondary-container)',
     iconClass: 'text-secondary',
+    href: '/wiki',
   },
   {
     icon: 'hub',
@@ -35,6 +37,7 @@ const CAPABILITIES = [
     accentStyle: 'var(--color-tertiary)',
     iconClass: 'text-tertiary',
     id: 'automation',
+    href: '/wiki',
   },
   {
     icon: 'web',
@@ -42,6 +45,7 @@ const CAPABILITIES = [
     body: ['Dashboard', 'Portfolio-Seite', 'Obsidian / Quartz', 'Ollama GUI'],
     accentStyle: 'var(--color-outline)',
     iconClass: 'text-outline',
+    href: '/projects',
   },
   {
     icon: 'auto_mode',
@@ -49,6 +53,7 @@ const CAPABILITIES = [
     body: ['Agent-Workflows', 'Gap-Filling-Pipeline', 'Build Automation', 'API-Integrationen'],
     accentStyle: 'var(--color-primary)',
     iconClass: 'text-primary',
+    href: '/projects',
   },
 ];
 
@@ -57,8 +62,9 @@ function CapabilityCard({ item, index }: { item: typeof CAPABILITIES[0]; index: 
   const [ref, visible] = useReveal(0.1);
 
   return (
-    <div
-      ref={ref as React.RefObject<HTMLDivElement>}
+    <Link
+      href={item.href}
+      ref={ref as React.RefObject<HTMLAnchorElement>}
       id={item.id}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -73,6 +79,7 @@ function CapabilityCard({ item, index }: { item: typeof CAPABILITIES[0]; index: 
         transition: 'background 0.25s, transform 0.25s, backdrop-filter 0.25s',
         opacity: visible ? 1 : 0,
         animation: visible ? `fadeUp 0.5s ease ${index * 80}ms forwards` : 'none',
+        display: 'block',
       }}
       className="p-8"
     >
@@ -96,7 +103,7 @@ function CapabilityCard({ item, index }: { item: typeof CAPABILITIES[0]; index: 
           </li>
         ))}
       </ul>
-    </div>
+    </Link>
   );
 }
 
@@ -150,10 +157,12 @@ export function AboutSection() {
               About
             </h2>
             <div className="text-4xl font-headline font-medium text-on-surface leading-tight mb-6">
-              Build. Fix . Optimize. Automate. Connect.
+              Create.
             </div>
             <p className="text-sm text-on-surface-variant leading-relaxed">
-              Projekte rund um lokale KI, automatisierte Wissenssysteme und moderne Weboberflächen. Ollama-Workflows über Markdown-Wikis bis zu deploybaren Portfolio- und Dokumentationsseiten.
+              Lokale LLMs, Backend, Datenstrukturen -
+              <br/>
+              vom Modell bis zum Interface - lokal, strukturiert, autonom.
             </p>
           </div>
           <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3">

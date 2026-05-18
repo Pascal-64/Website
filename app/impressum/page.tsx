@@ -9,8 +9,7 @@ const SECTIONS = [
     body: (
       <p className="text-on-surface">
         Pascal Peters
-        <br />
-        Auf dem Brennen 15
+
         <br />
         58730, Fröndenberg/Ruhr
         <br />
@@ -25,10 +24,10 @@ const SECTIONS = [
       <p>
         E-Mail:{" "}
         <a
-          href="mailto:contact@pascalpeters.info"
+          href="mailto:Kontakt@pascalpeters.dev"
           className="text-secondary hover:underline"
         >
-          contact@pascalpeters.info
+          Kontakt@pascalpeters.dev
         </a>
       </p>
     ),
